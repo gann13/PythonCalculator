@@ -15,3 +15,4 @@ def division(first_term, second_term):
     return int(first_term/second_term)
 
 print(add(10, 20))
+print(subtract(100, 20))
