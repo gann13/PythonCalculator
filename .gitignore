@@ -1,0 +1,10 @@
+
+#ignore pycache files
+__pycache__/
+
+#ignore pytest files
+.pytest_cache
+
+
+#secret file
+*.config
