@@ -1,31 +1,30 @@
 pipeline {
-  
-  agent any
-  stages {
-     
-	stage('Prepare') {
-	   steps {
-	   sh 'pip install -r requirements.txt'
-	   }
+
+	agent any
+
+	stages {
+
+		stage('Build') {
+			steps {
+				sh 'docker build . -t kp-calculator:1.0'
+			}
+		
+		stage('Test') {
+			steps {
+				sh 'docker run kp-calculator'
+			}
+
+		stage('Deploy') {
+			steps {
+				sh 'docker push'
+			}
+		} 
+		}
+
+		}
+
+
+
 	}
-	 
-	stage('Build') {
-	 steps {
-	  sh 'chmod +x *.py'
-	  sh 'python calculator.py'
-	  }	  
-	}
-	
-	stage('Test') { 
-	 steps {
-       sh 'pytest -v'	 
-	 }
-    }
-	
-	stage('Report') {
-	  steps {
-	  echo 'Test completed'
-	  }
-    }
- }
+
 }
